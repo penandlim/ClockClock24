@@ -24,7 +24,7 @@ var numStatusArray = [
     [SE.RIGHT_BOT, SE.LEFT_ONLY, SE.RIGHT_TOP, SE.LEFT_BOT, SE.RIGHT_ONLY, SE.LEFT_TOP],
     [SE.RIGHT_BOT, SE.LEFT_ONLY, SE.STRAIGHT, SE.LEFT_BOT, SE.RIGHT_TOP, SE.LEFT_TOP],
     [SE.RIGHT_ONLY, SE.LEFT_BOT, SE.NONE, SE.STRAIGHT, SE.NONE, SE.TOP_ONLY],
-    [SE.RIGHT_BOT, SE.LEFT_BOT, SE.RIGHT_ONLY, SE.LEFT_ONLY, SE.RIGHT_TOP, SE.LEFT_TOP],
+    [SE.RIGHT_BOT, SE.LEFT_BOT, SE.RIGHT_TOP, SE.LEFT_BOT, SE.RIGHT_TOP, SE.LEFT_TOP],
     [SE.RIGHT_BOT, SE.LEFT_BOT, SE.RIGHT_TOP, SE.STRAIGHT, SE.RIGHT_ONLY, SE.LEFT_TOP]
 ];
 
@@ -192,7 +192,6 @@ $(document).ready(function(){
     $(".smallhand").attr("data-angle", "0");
     $(".bighand").attr("data-angle", "0");
     transitionShowCurTime();
-
 });
 
 function addZero(i) {
