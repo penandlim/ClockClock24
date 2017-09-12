@@ -54,6 +54,7 @@ body, html {
     margin-left: calc(50% - 0.35vw);
     margin-top: 0.5vw;
     position:absolute;
+    box-shadow: 0 0 1vw 0.2vw rgba(0, 0, 0, 0.26);
 }
 
 .big {
@@ -62,6 +63,7 @@ body, html {
     background-color: black;
     margin-left: calc(50% - 0.35vw);
     position:absolute;
+    box-shadow: 0 0 1vw 0.2vw rgba(0, 0, 0, 0.26);
 }
 
 .title {
