@@ -21,9 +21,9 @@ var numStatusArray = [
     [SE.RIGHT_ONLY, SE.LEFT_BOT, SE.RIGHT_BOT, SE.LEFT_TOP, SE.RIGHT_TOP, SE.LEFT_ONLY],
     [SE.RIGHT_ONLY, SE.LEFT_BOT, SE.RIGHT_ONLY, SE.STRAIGHT, SE.RIGHT_ONLY, SE.LEFT_TOP],
     [SE.BOTTOM_ONLY, SE.BOTTOM_ONLY, SE.RIGHT_TOP, SE.STRAIGHT, SE.NONE, SE.TOP_ONLY],
-    [SE.RIGHT_BOT, SE.LEFT_ONLY, SE.RIGHT_TOP, SE.LEFT_BOT, SE.RIGHT_TOP, SE.LEFT_TOP],
+    [SE.RIGHT_BOT, SE.LEFT_ONLY, SE.RIGHT_TOP, SE.LEFT_BOT, SE.RIGHT_ONLY, SE.LEFT_TOP],
     [SE.RIGHT_BOT, SE.LEFT_ONLY, SE.STRAIGHT, SE.LEFT_BOT, SE.RIGHT_TOP, SE.LEFT_TOP],
-    [SE.RIGHT_ONLY, SE.LEFT_BOT, SE.NONE, SE.STRAIGHT, SE.NONE, SE.STRAIGHT],
+    [SE.RIGHT_ONLY, SE.LEFT_BOT, SE.NONE, SE.STRAIGHT, SE.NONE, SE.TOP_ONLY],
     [SE.RIGHT_BOT, SE.LEFT_BOT, SE.RIGHT_ONLY, SE.LEFT_ONLY, SE.RIGHT_TOP, SE.LEFT_TOP],
     [SE.RIGHT_BOT, SE.LEFT_BOT, SE.RIGHT_TOP, SE.STRAIGHT, SE.RIGHT_ONLY, SE.LEFT_TOP]
 ];
@@ -176,7 +176,11 @@ function turnTo(place, number, dur, easing, numOfSpins) {
     var clockNum = 2 * (place - 1) + 1;
 
     for (var i = 0; i < 6; i++) {
-        rotateClock(arr[i], clockNum, dur, easing, numOfSpins);
+        var pass = numOfSpins;
+        if (numOfSpins < 0) {
+            pass = Math.floor(Math.random() * 5 + Math.abs(numOfSpins))
+        }
+        rotateClock(arr[i], clockNum, dur, easing, pass);
         if (clockNum % 2 > 0)
             clockNum += 1;
         else
@@ -187,7 +191,7 @@ function turnTo(place, number, dur, easing, numOfSpins) {
 $(document).ready(function(){
     $(".smallhand").attr("data-angle", "0");
     $(".bighand").attr("data-angle", "0");
-    showCurTime();
+    transitionShowCurTime();
 
 });
 
@@ -203,19 +207,19 @@ function showCurTime() {
     var hour = addZero(d.getHours()) + "";
     var minute = addZero(d.getMinutes()) + "";
     console.log(hour+minute);
-    turnTo(1, parseInt(hour.charAt(0)), 10000, "easeInOutSine", 2);
+    turnTo(1, parseInt(hour.charAt(0)), 10000, "easeInOutSine", -2);
     setTimeout(function() {
-        turnTo(2, parseInt(hour.charAt(1)), 10000, "easeInOutSine", 2);
+        turnTo(2, parseInt(hour.charAt(1)), 10000, "easeInOutSine", -2);
     }, 500);
     setTimeout(function() {
-        turnTo(3, parseInt(minute.charAt(0)), 10000, "easeInOutSine", 2);
+        turnTo(3, parseInt(minute.charAt(0)), 10000, "easeInOutSine", -2);
     }, 1000);
     setTimeout(function() {
-        turnTo(4, parseInt(minute.charAt(1)), 10000, "easeInOutSine", 2);
+        turnTo(4, parseInt(minute.charAt(1)), 10000, "easeInOutSine", -2);
     }, 1500);
     setTimeout(function() {
         transitionShowCurTime();
-    }, 20000);
+    }, 15000);
 }
 
 function transitionShowCurTime() {
@@ -223,16 +227,16 @@ function transitionShowCurTime() {
     var hour = addZero(d.getHours()) + "";
     var minute = addZero(d.getMinutes()) + "";
     console.log(hour+minute);
-    turnTo(1, parseInt(hour.charAt(0)), 40000, "easeInOutSine", 10);
+    turnTo(1, parseInt(hour.charAt(0)), 55000, "easeInOutSine", -11);
     setTimeout(function() {
-        turnTo(2, parseInt(hour.charAt(1)), 40000, "easeInOutSine", 10);
+        turnTo(2, parseInt(hour.charAt(1)), 55000, "easeInOutSine", -11);
+    }, 500);
+    setTimeout(function() {
+        turnTo(3, parseInt(minute.charAt(0)), 55000, "easeInOutSine", -11);
     }, 1000);
     setTimeout(function() {
-        turnTo(3, parseInt(minute.charAt(0)), 40000, "easeInOutSine", 10);
-    }, 2000);
-    setTimeout(function() {
-        turnTo(4, parseInt(minute.charAt(1)), 40000, "easeInOutSine", 10);
-    }, 3000);
+        turnTo(4, parseInt(minute.charAt(1)), 55000, "easeInOutSine", -11);
+    }, 1500);
     setTimeout(function() {
         transitionShowCurTime();
     }, 60001);
